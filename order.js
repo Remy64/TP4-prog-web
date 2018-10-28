@@ -1,3 +1,19 @@
+function sendForm(){
+	//On vide le panier
+	localStorage.setItem('panier',null);
+	var commNum=localStorage.getItem('orderNumber');
+	if(commNum==null){
+		commNum=1;
+		localStorage.setItem('orderNumber',commNum);
+	}
+	else{
+		commNum=int(commNum)+1;
+		localStorage.setItem('orderNumber',commNum);
+	}
+	localStorage.setItem("firstName",$('#first-name')[0].value);
+	localStorage.setItem("lastName",$('#last-name')[0].value);
+}
+
 function validateForm(){
 	jQuery.validator.addMethod('validateExpiry',function(value,element){
 		return this.optional(element) || /(0[0-9]|1[0-2])\/[0-9][0-9]/.test(value);//Test si la date entrée est du format mm/aa
@@ -30,7 +46,7 @@ function validateForm(){
 			}
 		}
 	});
-	console.log(valid.form())
+	$('#order-form').submit(sendForm);
 }
 
 $(document).ready(validateForm);
