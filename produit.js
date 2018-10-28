@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 
 
-		} else {
+		} else if (!ProductInShoppingCart(panier)){
 
 			panier.push(ajout) ;
 		}
@@ -74,12 +74,29 @@ $(document).ready(function(){
 		$.getScript("./assets/scripts/entete.js"); 
 		$("#dialog").show();
 		setTimeout(function(){
-			$("#dialog").hide() ;}, 5000);
+		$("#dialog").hide() ;}, 5000);
 
 
 	});
 
+	function ProductInShoppingCart (panier) {
 
+
+		let indice = 0;
+		let trouve = false;
+		
+		while(!trouve && (indice < panier.length)) {
+
+			if (panier[indice]["id"]== $.urlParam("id")) {
+				trouve = true;
+
+
+			} else {
+				indice++ ;
+			}
+		}
+		return trouve ;
+	}
 
 
 	$.urlParam = function(name){
