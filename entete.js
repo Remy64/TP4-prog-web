@@ -27,9 +27,11 @@ function init(){
 	}
 	count[0].textContent=value;
 	if (count[0].textContent == 0){
-		$(count).hide();//working
+		$("count").hide();//working
 	}
-	//$(count).hide();
+	else{
+		$("count").show();
+	}
 }
 
 
