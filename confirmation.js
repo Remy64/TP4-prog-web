@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
-	let prenom = JSON.parse(localStorage.getItem('firstName'));
-	let nom = JSON.parse(localStorage.getItem('lastName'));
-	let nOrder = JSON.parse(localStorage.getItem('orderNumber'));
-	$("#name").text("Votre commande est confirmée"+prenom+" "+nom);
-	$("confirmation-number").text(nOrder);
+	let prenom = localStorage.getItem('firstName');
+	let nom = localStorage.getItem('lastName');
+	let nOrder = localStorage.getItem('orderNumber');
+	nOrder++;
+	localStorage.setItem("orderNumber", nOrder);
+	$("#name").text("Votre commande est confirmée "+prenom+" "+nom);
+	$("#confirmation-number").text(nOrder);
 })
