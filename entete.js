@@ -6,7 +6,12 @@ function getNumberProduct(){
 			let panier = JSON.parse(localStorage.getItem("panier"));
 
 			if (typeof panier != "undefined" && panier != null) {
-			var nb_product = panier.length; 
+			var nb_product = 0; 
+			panier.forEach(function(element){
+				nb_product += parseInt(element["quantite"]);
+
+
+			})
 		} else {
 			var nb_product = 0 ;
 		}
@@ -27,10 +32,10 @@ function init(){
 	}
 	count[0].textContent=value;
 	if (count[0].textContent == 0){
-		$("count").hide();//working
+		$(".count").css("display", "none");//working
 	}
 	else{
-		$("count").show();
+		$(".count").css("display", "inline");
 	}
 }
 

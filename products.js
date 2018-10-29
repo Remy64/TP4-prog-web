@@ -4,7 +4,6 @@ function cleanProducts(){
 
 function refreshPoducts(file){
 	cleanProducts();
-	//Recuperer la liste de tous les poduits
 	$.getJSON(file,function traitement(data){
 		//garder la catégorie souhaitée
 		looker = document.getElementById("product-categories");
@@ -94,7 +93,6 @@ function refreshPoducts(file){
 			res.reverse();
 		}
 		
-		//creer tous les elements html correspondants
 		res.forEach(function(element){
 			var list = $('#products-list');
 
@@ -113,16 +111,20 @@ function refreshPoducts(file){
 			par.className = "price";
 			prix.textContent = "Prix";
 			par.append(prix);
-			par.append(" "+element["price"]+" "+"$");
+			let price = element["price"].toString().replace(".", ",") ;
+			par.append(" "+price+" "+"$");
 			ref.append(desc);
 			ref.append(img);
 			ref.append(par);
 			div.append(ref);
 			list.append(div);
 		})
+
 		//Maj du nombre de produits affichés
 		$('#products-count')[0].textContent=$('#products-list')[0].childElementCount+' produits';
 		console.log($('#products-list'));
+
+
 	});
 }
 

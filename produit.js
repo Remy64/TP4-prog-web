@@ -14,15 +14,15 @@ $(document).ready(function(){
 				if (element['id'] == $.urlParam('id')) {
 
 					idUnknown = false;
-					$("#product-title").text(element['name']);
-					$("#product-desc + p").html(element['description']);
-					$("#product-features + ul").empty();
-					$("#product-price strong").text(element['price']);
+					$("#product-name").text(element['name']);
+					$("#product-desc").html(element['description']);
+					$("#product-features").empty();
+					$("#product-price strong").text(element['price'].toString().replace(".", ","));
 					$("#product-image").attr("src", "./assets/img/"+element['image'])
 
 					element['features'].forEach(function(feature) {
 
-						$("#product-features + ul").append("<li>"+feature+"</li>") ;
+						$("#product-features").append("<li>"+feature+"</li>") ;
 
 
 					})
@@ -50,6 +50,17 @@ $(document).ready(function(){
 	$("#add-to-cart-form .btn").click(function(event) {
 
 		event.preventDefault() ;
+		$("#add-to-cart-form").submit(); 
+
+	});
+
+		$("#add-to-cart-form").submit(function(event) {
+
+			event.preventDefault();
+			
+			
+		
+
 
 		let panier = JSON.parse(localStorage.getItem('panier'));
 		let ajout = {
